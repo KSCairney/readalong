@@ -1,30 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from './components/header'; 
-import LoadText from './components/texts/yellow';
+//import LoadText from './components/texts/yellow';
 import Texty from './components/texts/yellow.json';
 
-class Counter extends Component {
-  render() {
-    return (
-      <div>
-        <h1>{this.props.seconds}</h1>
-      </div>
-    );
-  }
-}
-
 let theWork = Texty.text.split(' ');
-
-class StartButton extends Component {
-  render() {
-    return(
-      <div>
-        <button>Start</button>
-      </div>
-    );
-  }
-}
 
 class App extends Component {
   constructor(props){
@@ -46,7 +26,7 @@ class App extends Component {
     })
     this.counter = setInterval(() => this.setState({
       seconds: this.state.seconds + 1
-    }), 700);
+    }), 485);
   }
 
   stopCounter() {
@@ -62,20 +42,20 @@ class App extends Component {
   render() {
 
     let start = (this.state.seconds === 0) ?
-      <button onClick={this.startCounter}>start</button> : 
+      <button className="control" onClick={this.startCounter}>start</button> : 
       null
     
     let stop = (this.state.seconds === 0 || !this.state.isOn) ?
       null : 
-      <button onClick={this.stopCounter}>stop</button>
+      <button className="control" onClick={this.stopCounter}>stop</button>
 
     let resume = (this.state.seconds === 0 || this.state.isOn) ?
       null :
-      <button onClick={this.startCounter}>resume</button>
+      <button className="control" onClick={this.startCounter}>resume</button>
 
     let reset = (this.state.seconds === 0 || this.state.isOn) ?
       null :
-      <button onClick={this.resetCounter}>reset</button>
+      <button className="control" onClick={this.resetCounter}>reset</button>
 
     //let word = [];
     //while (this.state.seconds < theWork.length) {
@@ -88,10 +68,10 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <div className="center">
-          <h2 className="texts righty unfocused">{lastWord}</h2>
-          <h1 className="focused">{word}</h1>
-          <h2 className="texts lefty unfocused">{nextWord}</h2>
+        <div className="row">
+          <h2 className="righty unfocused col-4">{lastWord}</h2>
+          <h2 className="center focused col-4">{word}</h2>
+          <h2 className="lefty unfocused col-4">{nextWord}</h2>
         </div>
         <div className="center">
           {start}
@@ -99,7 +79,6 @@ class App extends Component {
           {stop}
           {reset}
         </div>
-        <Counter seconds={this.state.seconds}/>
       </div>
     );
   }
