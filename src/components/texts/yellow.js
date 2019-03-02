@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TextData from './yellow.json';
+import TextData from './works.json';
 
 class LoadText extends Component {
 
